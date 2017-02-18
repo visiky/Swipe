@@ -19,14 +19,16 @@
 .slide_box {
   position: relative;
   overflow: hidden;
-  width: 10rem;
+  width: 100%;
+  margin: 0 auto;
   margin-bottom: 25px;
   height: 4.5rem;
 }
 .slide_list {
   position: relative;
-  width: 9rem;
-  max-height: 361px;
+  width: 100%;
+  max-height: 300px;
+  margin: 0;
 }
 .slide_list>.item {
   position: absolute;
