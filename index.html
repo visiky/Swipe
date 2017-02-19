@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>图片轮播3d效果</title>
-  <link rel="stylesheet" href="swipe.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片轮播3d效果</title>
+    <link rel="stylesheet" href="swipe.css">
 </head>
+
 <body>
-  <div class="slide_box">
-           <ul class="slide_list swipe" id="swipe_list" data-ride='swipe'>
-             <li class="item">
-               <a href="" class="slide_list_link">
-                 <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/67011.jpg" alt="" class="slide_list_pic">
-               </a>
-             </li>
-             <li class="item">
-               <a href="" class="slide_list_link">
-                 <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/67011.jpg" alt="" class="slide_list_pic">
-               </a>
-             </li>
-             <li class="item">
-               <a href="" class="slide_list_link">
-                 <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/67011.jpg" alt="" class="slide_list_pic">
-               </a>
-             </li>
-             <li class="item">
-               <a href="" class="slide_list_link">
-                 <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/67011.jpg" alt="" class="slide_list_pic">
-               </a>
-             </li>
-             <li class="item">
-               <a href="" class="slide_list_link">
-                 <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/67011.jpg" alt="" class="slide_list_pic">
-               </a>
-             </li>
-             <li class="item">
-               <a href="" class="slide_list_link">
-                 <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/67011.jpg" alt="" class="slide_list_pic">
-               </a>
-             </li>
-           </ul>
-         <div class="slide_action">
-             <a href="##" class="slide_action_btn-left"><span class=" glyphicon glyphicon-home" ></span></a>
-             <a href="##" class='slide_action_btn-right'><span class=" glyphicon glyphicon-home" ></span></a>
-         </div>
-       </div>
-       <script src="jquery.js"></script>
-       <script src='swipe.js'></script>
+    <div id="swipe">
+        <div class="swipe-wrapper">
+            <div class="swipe-list">
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/67011.jpg" alt="" class="swipe_list_pic">
+                </a>
+                <a href="#">
+                    <img src="http://img1.imgtn.bdimg.com/it/u=4147478557,1308464884&fm=23&gp=0.jpg" alt="" class="swipe_list_pic">
+                </a>
+                <a href="#">
+                    <img src="http://img0.imgtn.bdimg.com/it/u=1857176215,2816791989&fm=23&gp=0.jpg" alt="" class="swipe_list_pic">
+                </a>
+                <a href="#">
+                    <img src="http://img3.imgtn.bdimg.com/it/u=2391906999,1769349468&fm=23&gp=0.jpg" alt="" class="swipe_list_pic">
+                </a>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/common/upload/t_focus_info_iphone/67011.jpg" alt="" class="swipe_list_pic">
+                </a>
+            </div>
+            <ol class='swipe-indicator'>
+                <li data-index="0"></li>
+                <li data-index="1"></li>
+                <li data-index="2"></li>
+                <li data-index="3"></li>
+                <li data-index="4"></li>
+            </ol>
+            <nav class="swipe-action">
+                <a href="#" class="prev"><span>&laquo;</span></a>
+                <a href="#" class='next'><span>&raquo;</span></a>
+            </nav>
+        </div>
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/3.0.0-rc1/jquery.js"></script>
+    <script src='swipe1.js'></script>
+    <script type="text/javascript">
+        // $("#swipe").Swipe({autoplay:true})
+        $("#swipe").Swipe("cycle")
+    </script>
 </body>
+
 </html>
