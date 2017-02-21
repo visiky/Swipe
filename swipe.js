@@ -406,7 +406,10 @@ window.Modernizr = function (a, b, c) {
     _init: function (options) {
 
       this.options = $.extend(true, {}, $.Swipe.defaults, options);
-
+    // support for 3d / 2d transforms and transitions
+      this.support3d = Modernizr.csstransforms3d;
+      this.support2d = Modernizr.csstransforms;
+      this.supportTrans = Modernizr.csstransitions;
 
       this.$list = this.$el.find('.swipe-list');
 
@@ -461,6 +464,70 @@ window.Modernizr = function (a, b, c) {
         .css("background", "rgba(0, 0, 0, 0.2)");
     },
     _getCoordinates: function (position) {
+       if (this.support3d && this.supportTrans) {
+ 
+         switch (position) {
+           case 'outleft':
+            return {
+               '-webkit-transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
+               '-moz-transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
+               '-o-transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
+               '-ms-transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
+               'transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
+               'opacity': 0,
+               'visibility': 'hidden'
+             };
+ 
+             break;
+           case 'outright':
+             return {
+               '-webkit-transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
+               '-moz-transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
+               '-o-transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
+               '-ms-transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
+               'transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
+               'opacity': 0,
+             'visibility': 'hidden'
+           };
+ 
+             break;
+           case 'left':
+             return {
+               '-webkit-transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
+               '-moz-transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
+               '-o-transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
+               '-ms-transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
+               'transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
+               'opacity': 0.7,
+               'visibility': 'visible'
+             };
+ 
+           break;
+           case 'right':
+             return {
+               '-webkit-transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
+               '-moz-transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
+               '-o-transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
+               '-ms-transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
+               'transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
+              'opacity': 0.7,
+               'visibility': 'visible'
+             };
+ 
+             break;
+           case 'center':
+             return {
+              '-webkit-transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
+              '-moz-transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
+               '-o-transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
+             '-ms-transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
+               'transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
+               'opacity': 1,
+               'visibility': 'visible'
+             };
+ 
+             break;
+         };
       switch (position) {
         case 'outleft':
           return {
@@ -695,7 +762,7 @@ window.Modernizr = function (a, b, c) {
   // $.fn=$.prototype
   // 此处给JQuery添加Swipe方法
   $.fn.Swipe = function (options) {
-     if(options===undefined) options={};
+    if(options===undefined) options={};
     if (typeof options === 'object') {
       this.each(function () {
         // jQuery.data( element, key, value )
