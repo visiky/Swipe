@@ -660,7 +660,25 @@ window.Modernizr = function (a, b, c) {
           _self.$items.removeClass('swipe-transition');
           _self.isAnim = false;
         });
-
+        
+      // 添加移动端触屏事件 
+      var startX = 0,
+        moveEndX = 0;
+      this.$list.on("touchstart", function (e) {
+        e.preventDefault();
+        startX = e.originalEvent.changedTouches[0].pageX;
+      });
+      this.$list.on("touchmove", function (e) {
+        e.preventDefault();
+        moveEndX = e.originalEvent.changedTouches[0].pageX;
+        var X = moveEndX - startX;
+        if (X > 0) {
+          _self._slide('prev');
+        } else
+        if (X < 0) {
+          _self._slide('next');
+        }
+      });
       if (this.$indicators) {
         this._switchItems();
       }
