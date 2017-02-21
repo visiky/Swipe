@@ -593,6 +593,7 @@ window.Modernizr = function (a, b, c) {
 
           break;
       };
+       };
     },
 
     // 更新图片位置
@@ -710,7 +711,7 @@ window.Modernizr = function (a, b, c) {
 
           break;
       };
-
+    
     },
     _switchItems() {
       var _self = this;
