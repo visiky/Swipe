@@ -695,10 +695,11 @@ window.Modernizr = function (a, b, c) {
   // $.fn=$.prototype
   // 此处给JQuery添加Swipe方法
   $.fn.Swipe = function (options) {
+     if(options===undefined) options={};
     if (typeof options === 'object') {
       this.each(function () {
         // jQuery.data( element, key, value )
-        var instance = $.data(this, 'gallery');
+        var instance = $.data(this, 'Swipe');
         if (!instance) {
           $.data(this, 'Swipe', new $.Swipe(options, this));
         }
