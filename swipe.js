@@ -662,27 +662,29 @@ window.Modernizr = function (a, b, c) {
         });
         
       // 添加移动端触屏事件 
-      var startX = 0,
-        moveEndX = 0;
+      var startX = 0,startY=0,
+        moveEndX = 0,moveEndY=0;
       this.$list.on("touchstart", function (e) {
         e.preventDefault();
         startX = e.originalEvent.changedTouches[0].pageX;
+        startY = e.originalEvent.changedTouches[0].pageY;
       });
-      this.$list.on("touchmove", function (e) {
+      this.$list.on("touchend", function (e) {
         e.preventDefault();
         moveEndX = e.originalEvent.changedTouches[0].pageX;
+        moveEndY = e.originalEvent.changedTouches[0].pageY;
         var X = moveEndX - startX;
-        if (X > 0) {
+        var Y = moveEndY - startY;
+        if (Math.abs(X) > Math.abs(Y) && X > 0 ) {
           _self._slide('prev');
         } else
-        if (X < 0) {
+        if (Math.abs(X) < Math.abs(Y) && X < 0 ) {
           _self._slide('next');
         }
       });
       if (this.$indicators) {
         this._switchItems();
       }
-
     },
     _slide: function (dir) {
       if (this.isAnim)
@@ -824,4 +826,5 @@ window.Modernizr = function (a, b, c) {
     return this;
   };
 })(jQuery);
+
 
