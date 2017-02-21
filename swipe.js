@@ -407,10 +407,6 @@ window.Modernizr = function (a, b, c) {
 
       this.options = $.extend(true, {}, $.Swipe.defaults, options);
 
-      // support for 3d / 2d transforms and transitions
-      this.support3d = Modernizr.csstransforms3d;
-      this.support2d = Modernizr.csstransforms;
-      this.supportTrans = Modernizr.csstransitions;
 
       this.$list = this.$el.find('.swipe-list');
 
@@ -448,6 +444,7 @@ window.Modernizr = function (a, b, c) {
       // current, left and right items
       this._setItems();
 
+
       // current item is not changed
       // left and right one are rotated and translated
       this.$leftItem.css(this._getCoordinates('left'));
@@ -459,141 +456,76 @@ window.Modernizr = function (a, b, c) {
         .css(this._getCoordinates('outleft'));
 
       this.$indicators.eq(this.current)
-        .css('background', 'rgba(0, 0, 0, 0.20)')
+        .css('background', 'rgb(244, 67, 54)')
         .siblings()
-        .css("background", "none");
+        .css("background", "rgba(0, 0, 0, 0.2)");
     },
     _getCoordinates: function (position) {
-      if (this.support3d && this.supportTrans) {
+      switch (position) {
+        case 'outleft':
+          return {
+            '-webkit-transform': 'translate(-450px) scale(0.5)',
+            '-moz-transform': 'translate(-450px) scale(0.5)',
+            '-o-transform': 'translate(-450px) scale(0.5)',
+            '-ms-transform': 'translate(-450px) scale(0.5)',
+            'transform': 'translate(-450px) scale(0.5)',
+            'opacity': 0,
+            'visibility': 'hidden'
+          };
 
-        switch (position) {
-          case 'outleft':
-            return {
-              '-webkit-transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
-              '-moz-transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
-              '-o-transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
-              '-ms-transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
-              'transform': 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
-              'opacity': 0,
-              'visibility': 'hidden'
-            };
+          break;
+        case 'outright':
+          return {
+            '-webkit-transform': 'translate(450px) scale(0.5)',
+            '-moz-transform': 'translate(450px) scale(0.5)',
+            '-o-transform': 'translate(450px) scale(0.5)',
+            '-ms-transform': 'translate(450px) scale(0.5)',
+            'transform': 'translate(450px) scale(0.5)',
+            'opacity': 0,
+            'visibility': 'hidden'
+          };
 
-            break;
-          case 'outright':
-            return {
-              '-webkit-transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
-              '-moz-transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
-              '-o-transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
-              '-ms-transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
-              'transform': 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
-              'opacity': 0,
-              'visibility': 'hidden'
-            };
+          break;
+        case 'left':
+          return {
+            '-webkit-transform': 'translate(-350px) scale(0.8) rotateY(45deg)',
+            '-moz-transform': 'translate(-350px) scale(0.8) rotateY(45deg)',
+            '-o-transform': 'translate(-350px) scale(0.8) rotateY(45deg)',
+            '-ms-transform': 'translate(-350px) scale(0.8) rotateY(45deg)',
+            'transform': 'translate(-350px) scale(0.8) rotateY(45deg)',
+            'opacity': 0.7,
+            'visibility': 'visible',
+            'z-index': '1'
+          };
 
-            break;
-          case 'left':
-            return {
-              '-webkit-transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
-              '-moz-transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
-              '-o-transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
-              '-ms-transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
-              'transform': 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
-              'opacity': 0.7,
-              'visibility': 'visible'
-            };
+          break;
+        case 'right':
+          return {
+            '-webkit-transform': 'translate(350px) scale(0.8) rotateY(-45deg)',
+            '-moz-transform': 'translate(350px) scale(0.8) rotateY(-45deg)',
+            '-o-transform': 'translate(350px) scale(0.8) rotateY(-45deg)',
+            '-ms-transform': 'translate(350px) scale(0.8) rotateY(-45deg)',
+            'transform': 'translate(350px) scale(0.8) rotateY(-45deg)',
+            'opacity': 0.7,
+            'visibility': 'visible',
+            'z-index': '1'
+          };
 
-            break;
-          case 'right':
-            return {
-              '-webkit-transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
-              '-moz-transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
-              '-o-transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
-              '-ms-transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
-              'transform': 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
-              'opacity': 0.7,
-              'visibility': 'visible'
-            };
+          break;
+        case 'center':
+          return {
+            '-webkit-transform': 'translate(0px) scale(1)',
+            '-moz-transform': 'translate(0px) scale(1)',
+            '-o-transform': 'translate(0px) scale(1)',
+            '-ms-transform': 'translate(0px) scale(1)',
+            'transform': 'translate(0px) scale(1)',
+            'opacity': 1,
+            'visibility': 'visible',
+            'z-index': '9999'
+          };
 
-            break;
-          case 'center':
-            return {
-              '-webkit-transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
-              '-moz-transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
-              '-o-transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
-              '-ms-transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
-              'transform': 'translateX(0px) translateZ(0px) rotateY(0deg)',
-              'opacity': 1,
-              'visibility': 'visible'
-            };
-
-            break;
-        };
-
-      } else if (this.support2d && this.supportTrans) {
-        switch (position) {
-          case 'outleft':
-            return {
-              '-webkit-transform': 'translate(-450px) scale(0.5)',
-              '-moz-transform': 'translate(-450px) scale(0.5)',
-              '-o-transform': 'translate(-450px) scale(0.5)',
-              '-ms-transform': 'translate(-450px) scale(0.5)',
-              'transform': 'translate(-450px) scale(0.5)',
-              'opacity': 0,
-              'visibility': 'hidden'
-            };
-
-            break;
-          case 'outright':
-            return {
-              '-webkit-transform': 'translate(450px) scale(0.5)',
-              '-moz-transform': 'translate(450px) scale(0.5)',
-              '-o-transform': 'translate(450px) scale(0.5)',
-              '-ms-transform': 'translate(450px) scale(0.5)',
-              'transform': 'translate(450px) scale(0.5)',
-              'opacity': 0,
-              'visibility': 'hidden'
-            };
-
-            break;
-          case 'left':
-            return {
-              '-webkit-transform': 'translate(-350px) scale(0.8)',
-              '-moz-transform': 'translate(-350px) scale(0.8)',
-              '-o-transform': 'translate(-350px) scale(0.8)',
-              '-ms-transform': 'translate(-350px) scale(0.8)',
-              'transform': 'translate(-350px) scale(0.8)',
-              'opacity': 0.7,
-              'visibility': 'visible'
-            };
-
-            break;
-          case 'right':
-            return {
-              '-webkit-transform': 'translate(350px) scale(0.8)',
-              '-moz-transform': 'translate(350px) scale(0.8)',
-              '-o-transform': 'translate(350px) scale(0.8)',
-              '-ms-transform': 'translate(350px) scale(0.8)',
-              'transform': 'translate(350px) scale(0.8)',
-              'opacity': 0.7,
-              'visibility': 'visible'
-            };
-
-            break;
-          case 'center':
-            return {
-              '-webkit-transform': 'translate(0px) scale(1)',
-              '-moz-transform': 'translate(0px) scale(1)',
-              '-o-transform': 'translate(0px) scale(1)',
-              '-ms-transform': 'translate(0px) scale(1)',
-              'transform': 'translate(0px) scale(1)',
-              'opacity': 1,
-              'visibility': 'visible'
-            };
-
-            break;
-        };
-
-      }
+          break;
+      };
     },
 
     // 更新图片位置
@@ -609,11 +541,6 @@ window.Modernizr = function (a, b, c) {
         .$items
         .eq(0) : this.$items.eq(this.current + 1);
 
-      if (!this.support3d && this.support2d && this.supportTrans) {
-
-        this.$items.css('z-index', 1);
-        this.$currentItem.css('z-index', 999);
-      }
 
       //next & previous items
       if (this.itemsCount > 3) {
@@ -673,7 +600,7 @@ window.Modernizr = function (a, b, c) {
 
     },
     _slide: function (dir) {
-      if (this.supportTrans && this.isAnim)
+      if (this.isAnim)
         return false;
 
       this.isAnim = true;
@@ -697,11 +624,6 @@ window.Modernizr = function (a, b, c) {
           break;
       };
 
-
-
-      if (!this.supportTrans)
-        this.$currentItem.css(this._getCoordinates('center'))
-        .addClass('current');
     },
     _switchItems() {
       var _self = this;
@@ -770,16 +692,20 @@ window.Modernizr = function (a, b, c) {
     }
   };
 
-  // 定义全局对象
+  // $.fn=$.prototype
+  // 此处给JQuery添加Swipe方法
   $.fn.Swipe = function (options) {
     if (typeof options === 'object') {
       this.each(function () {
-          // jQuery.data( element, key, value )
+        // jQuery.data( element, key, value )
+        var instance = $.data(this, 'gallery');
+        if (!instance) {
           $.data(this, 'Swipe', new $.Swipe(options, this));
+        }
       });
-    } else if (typeof options === 'string') {
+    } else {
       this.each(function () {
-        var instance = $.data(this, 'Swipe', new $.Swipe({}, this));
+        var instance = $.data(this, 'Swipe');
         if (instance) {
           switch (options) {
             case 'cycle':
@@ -796,11 +722,20 @@ window.Modernizr = function (a, b, c) {
             case 'prev':
               instance._slide('prev');
               break;
+            default:
+              logError("no such method '" + options +
+                "' for Swipe instance");
+              break;
           }
+        } else {
+          logError(
+            "cannot call methods on Swipe prior to initialization; " +
+            "attempted to call method '" + options + "'");
+          return;
         }
       });
     }
     return this;
   };
-
 })(jQuery);
+
